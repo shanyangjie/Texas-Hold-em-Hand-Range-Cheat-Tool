@@ -1,4 +1,4 @@
-CO_SUITED={
+BTN_SUITED={
     "AK":"Raise",
     "AQ":"Raise",
     "AJ":"Raise",
@@ -80,7 +80,7 @@ CO_SUITED={
     "42":"Fold",
 }
 
-CO_OFF_SUITED={
+BTN_OFF_SUITED={
     "AK":"Raise",
     "AQ":"Raise",
     "AJ":"Raise",
@@ -162,7 +162,7 @@ CO_OFF_SUITED={
     "42":"Fold",
 }
 
-CO_PAIR ={
+BTN_PAIR ={
     "AA":"Raise",
     "KK":"Raise",  
     "QQ":"Raise",  
@@ -181,10 +181,10 @@ def main():
     print("1:",end='')
     first=input()
     print("2:",end='')
-    second=input()
+    seBTNnd=input()
 
     is_suit = False
-    if first != second:
+    if first != seBTNnd:
         print("Suited?(Y or N):",end='')
         is_suit=input()
         if is_suit == 'Y':
@@ -194,22 +194,22 @@ def main():
         else:
             print("error")
 
-    print(result(first,second,is_suit))
+    print(result(first,seBTNnd,is_suit))
 
 
 def result(a,b,is_suit):
     if card_num(a) == card_num(b):
-        return CO_PAIR[a+b]
+        return BTN_PAIR[a+b]
     if card_num(a) > card_num(b):
         if is_suit:
-            return CO_SUITED[a+b]
+            return BTN_SUITED[a+b]
         else:
-            return CO_OFF_SUITED[a+b]
+            return BTN_OFF_SUITED[a+b]
     else:
         if is_suit:
-            return CO_SUITED[b+a]
+            return BTN_SUITED[b+a]
         else:
-            return CO_OFF_SUITED[b+a]
+            return BTN_OFF_SUITED[b+a]
 
 def card_num(card):
     if card=='A':
