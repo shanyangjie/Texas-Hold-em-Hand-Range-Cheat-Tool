@@ -3569,12 +3569,14 @@ def main():
     print("1:",end='')
     first=input()
     print("2:",end='')
-    seSBnd=input()
-    print("Position:",end='')
+    second=input()
+    print("Position:(UTG,MP,CO,BTN,SB,BB)",end='')
     pos=input()
+    print("Call•Raise:",end='')
+    cr=input()
 
     is_suit = False
-    if first != seSBnd:
+    if first != second:
         print("Suited?(Y or N):",end='')
         is_suit=input()
         if is_suit == 'Y':
@@ -3584,22 +3586,22 @@ def main():
         else:
             print("error")
 
-    print(result(first,seSBnd,is_suit,pos))
+    print(result(first,second,is_suit,pos,cr))
 
 
-def result(a,b,is_suit,position):
+def result(a,b,is_suit,position,callraise):
     if card_num(a) == card_num(b):
-        return HAND_RANGE[position]["PAIR"][a+b]
+        return HAND_RANGE[position][callraise]["PAIR"][a+b]
     if card_num(a) > card_num(b):
         if is_suit:
-            return HAND_RANGE[position]["SUITED"][a+b]
+            return HAND_RANGE[position][callraise]["SUITED"][a+b]
         else:
-            return HAND_RANGE[position]["OFF_SUITED"][a+b]
+            return HAND_RANGE[position][callraise]["OFF_SUITED"][a+b]
     else:
         if is_suit:
-            return HAND_RANGE[position]["SUITED"][b+a]
+            return HAND_RANGE[position][callraise]["SUITED"][b+a]
         else:
-            return HAND_RANGE[position]["OFF_SUITED"][b+a]
+            return HAND_RANGE[position][callraise]["OFF_SUITED"][b+a]
 
 def card_num(card):
     if card=='A':
